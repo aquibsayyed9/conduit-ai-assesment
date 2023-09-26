@@ -31,10 +31,16 @@ export class Article {
   @Property()
   body = '';
 
-  @Property({ type: 'date' })
+  // @Property({ type: 'date' })
+  // createdAt = new Date();
+
+  // @Property({ type: 'date', onUpdate: () => new Date() })
+  // updatedAt = new Date();
+
+  @Property({ type: 'date', columnType: 'datetime', onCreate: () => new Date() })
   createdAt = new Date();
 
-  @Property({ type: 'date', onUpdate: () => new Date() })
+  @Property({ type: 'date', columnType: 'datetime', onUpdate: () => new Date() })
   updatedAt = new Date();
 
   @Property({ type: ArrayType })

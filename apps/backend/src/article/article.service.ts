@@ -166,6 +166,10 @@ export class ArticleService {
       { id: userId },
       { populate: ['followers', 'favorites', 'articles'] },
     );
+    if (articleData.createdAt) {
+      delete articleData.createdAt;
+    }
+
     const article = await this.articleRepository.findOne({ slug }, { populate: ['author'] });
     wrap(article).assign(articleData);
     await this.em.flush();
